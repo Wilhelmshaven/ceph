@@ -181,12 +181,7 @@ class RGWCache  : public T
   }
 
   string normal_name(rgw_bucket& bucket, const std::string& oid) {
-    string& bucket_name = bucket.name;
-    char buf[bucket_name.size() + 1 + oid.size() + 1];
-    const char *bucket_str = bucket_name.c_str();
-    const char *oid_str = oid.c_str();
-    sprintf(buf, "%s+%s", bucket_str, oid_str);
-    return string(buf);
+    return bucket.name + "+" + oid;
   }
 
   void normalize_bucket_and_obj(rgw_bucket& src_bucket, const string& src_obj, rgw_bucket& dst_bucket, string& dst_obj);
